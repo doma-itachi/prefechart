@@ -13,27 +13,33 @@ export const zPrefectureResponse = z.object({
 
 const zPopulationCompositionPerYearDataCommon = z.object({
     label: z.string(),
-    data: z.object({
-        year: z.number(),
-        value: z.number(),
-        rate: z.number(),
-    }),
+    data: z.array(
+        z.object({
+            year: z.number(),
+            value: z.number(),
+            rate: z.number(),
+        })
+    )
 });
 
 const zPopulationCompositionPerYearDataTotal = z.object({
     label: z.literal("総人口"),
-    data: z.object({
-        year: z.number(),
-        value: z.number(),
-    }),
+    data: z.array(
+        z.object({
+            year: z.number(),
+            value: z.number(),
+        })
+    )
 });
 
 const zPopulationCompositionPerYear = z.object({
     boundaryYear: z.number(),
-    data: z.union([
-        zPopulationCompositionPerYearDataCommon,
-        zPopulationCompositionPerYearDataTotal,
-    ]),
+    data: z.array(
+        z.union([
+            zPopulationCompositionPerYearDataCommon,
+            zPopulationCompositionPerYearDataTotal,
+        ])
+    )
 });
 export type PopulationCompositionPerYear = z.infer<
     typeof zPopulationCompositionPerYear
