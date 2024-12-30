@@ -1,8 +1,8 @@
+import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import { getPopulationComposition, getPrefectures } from "../lib/resas";
-import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
+import { getPopulationComposition, getPrefectures } from "../lib/resas";
 
 export const runtime = "nodejs";
 
@@ -17,13 +17,15 @@ app.get(
     zValidator(
         "query",
         z.object({
-            prefCode: z.string()
-        })
+            prefCode: z.string(),
+        }),
     ),
-    async(c)=>{
+    async (c) => {
         const query = await c.req.valid("query");
-        return c.json(await getPopulationComposition(parseInt(query.prefCode)));
-    }
+        return c.json(
+            await getPopulationComposition(Number.parseInt(query.prefCode)),
+        );
+    },
 );
 
 export const GET = handle(app);

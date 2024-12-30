@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "biome format src --write",
-    "check": "biome check --apply src"
+    "check": "biome check --write src"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.2",

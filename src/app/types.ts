@@ -18,8 +18,8 @@ const zPopulationCompositionPerYearDataCommon = z.object({
             year: z.number(),
             value: z.number(),
             rate: z.number(),
-        })
-    )
+        }),
+    ),
 });
 
 const zPopulationCompositionPerYearDataTotal = z.object({
@@ -28,8 +28,8 @@ const zPopulationCompositionPerYearDataTotal = z.object({
         z.object({
             year: z.number(),
             value: z.number(),
-        })
-    )
+        }),
+    ),
 });
 
 const zPopulationCompositionPerYear = z.object({
@@ -38,8 +38,8 @@ const zPopulationCompositionPerYear = z.object({
         z.union([
             zPopulationCompositionPerYearDataCommon,
             zPopulationCompositionPerYearDataTotal,
-        ])
-    )
+        ]),
+    ),
 });
 export type PopulationCompositionPerYear = z.infer<
     typeof zPopulationCompositionPerYear
