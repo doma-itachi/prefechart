@@ -13,8 +13,10 @@ export function usePrefectures() {
             try {
                 const res = await client.api.prefectures.$get();
                 setPrefectures(await res.json());
-            } catch (e: any) {
-                setError(e);
+            } catch (e) {
+                if (e instanceof Error) {
+                    setError(e);
+                }
             } finally {
                 setIsLoading(false);
             }
