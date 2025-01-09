@@ -49,3 +49,8 @@ export const zPopulationCompositionPerYearResponse = z.object({
     message: z.any(),
     result: zPopulationCompositionPerYear,
 });
+
+export type Stats = Record<
+    number,
+    PopulationCompositionPerYear & { prefName: string }
+>;

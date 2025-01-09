@@ -16,7 +16,7 @@ export function usePrefectures() {
             } catch (e) {
                 if (e instanceof Error) {
                     setError(e);
-                }
+                } else throw e;
             } finally {
                 setIsLoading(false);
             }
