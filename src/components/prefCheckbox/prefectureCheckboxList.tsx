@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { CheckboxWithLabel } from "../checkboxWithLabel";
 
 export function PrefectureCheckboxList({
+    prefectures,
     onChangePrefecture,
 }: {
+    prefectures?: Prefecture[];
     onChangePrefecture?: (selected: Prefecture[]) => void;
 }): React.ReactNode {
-    const { prefectures, isLoading, error } = usePrefectures();
     const [selectedPrefectures, setSelectedPrefectures] = useState<Set<number>>(
         new Set(),
     );
@@ -22,15 +23,17 @@ export function PrefectureCheckboxList({
                 newSet.delete(prefCode);
             }
 
-            if (prefectures) {
-                onChangePrefecture?.(
-                    prefectures.filter((e) => newSet.has(e.prefCode)),
-                );
-            }
-
             return newSet;
         });
     }
+
+    useEffect(() => {
+        if (prefectures) {
+            onChangePrefecture?.(
+                prefectures.filter((e) => selectedPrefectures.has(e.prefCode)),
+            );
+        }
+    }, [prefectures, selectedPrefectures, onChangePrefecture]);
 
     return (
         <div className="flex flex-wrap">
