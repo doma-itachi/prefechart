@@ -3,6 +3,7 @@ import { usePopulationStats } from "@/hooks/usePopulationStats";
 import { usePrefectureStatsConverter } from "@/hooks/usePrefectureStatsConverter";
 import { stringToColor } from "@/lib/utils";
 import {
+    Legend,
     Line,
     LineChart,
     ResponsiveContainer,
@@ -27,8 +28,8 @@ export function ChartProvider({
             <LineChart
                 data={chartData}
                 margin={{
-                    left: 10,
-                    right: 10,
+                    left: 20,
+                    right: 20,
                 }}
             >
                 {Object.values(prefectureStats).map((e) => (
@@ -42,6 +43,7 @@ export function ChartProvider({
                 <XAxis dataKey={"name"} />
                 <YAxis />
                 <Tooltip itemSorter={(item) => -(item.value as number)} />
+                <Legend />
             </LineChart>
         </ResponsiveContainer>
     );

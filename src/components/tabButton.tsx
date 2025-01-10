@@ -17,14 +17,14 @@ export function TabButton<T extends string>({
     }, [selectedItem]);
 
     return (
-        <div className="flex gap-2 bg-neutral-100 px-2 py-1 rounded">
+        <div className="flex gap-2 bg-neutral-100 px-2 py-1 rounded shadow-inner text-sm md:text-base">
             {items.map((e) => (
                 <button
                     type="button"
                     onClick={() => setSelectedItem(e)}
                     key={e}
                     className={cn(
-                        "px-2 py-1 transition",
+                        "px-2 py-2 md:py-1 transition",
                         selectedItem === e && "bg-white rounded shadow-sm",
                     )}
                 >
