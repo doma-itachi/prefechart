@@ -12,7 +12,9 @@ import "./globals.css";
 //     subsets: ["latin"],
 // });
 
-const MPlus2 = M_PLUS_2();
+const MPlus2 = M_PLUS_2({
+    subsets: ["latin"]
+});
 export const metadata: Metadata = {
     title: "Prefchart",
     description: "都道府県の人口構成のチャート",
