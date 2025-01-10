@@ -1,4 +1,4 @@
-import type { Prefecture } from "@/app/types";
+import type { Prefecture, StatLabel } from "@/app/types";
 import { usePopulationStats } from "@/hooks/usePopulationStats";
 import { usePrefectureStatsConverter } from "@/hooks/usePrefectureStatsConverter";
 import { stringToColor } from "@/lib/utils";
@@ -13,16 +13,24 @@ import {
 
 export function ChartProvider({
     prefectures,
+    label,
 }: {
     prefectures: Prefecture[];
+    label: StatLabel;
 }): React.ReactNode {
     const { prefectureStats, isLoading, error } =
         usePopulationStats(prefectures);
-    const chartData = usePrefectureStatsConverter(prefectureStats, "総人口");
+    const chartData = usePrefectureStatsConverter(prefectureStats, label);
 
     return (
         <ResponsiveContainer width={"100%"} height={400}>
-            <LineChart data={chartData}>
+            <LineChart
+                data={chartData}
+                margin={{
+                    left: 10,
+                    right: 10,
+                }}
+            >
                 {Object.values(prefectureStats).map((e) => (
                     <Line
                         type="monotone"

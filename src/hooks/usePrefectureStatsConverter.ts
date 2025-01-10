@@ -1,4 +1,4 @@
-import type { Stats } from "@/app/types";
+import type { StatLabel, Stats } from "@/app/types";
 import { useMemo } from "react";
 
 type ChartData = {
@@ -6,8 +6,6 @@ type ChartData = {
 } & {
     [K: string]: number;
 };
-
-type StatLabel = "総人口" | "年少人口" | "生産年齢人口" | "老年人口";
 
 export function usePrefectureStatsConverter(
     stats: Stats,

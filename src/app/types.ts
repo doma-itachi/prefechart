@@ -54,3 +54,6 @@ export type Stats = Record<
     number,
     PopulationCompositionPerYear & { prefName: string }
 >;
+
+export const statLabel = ["総人口", "年少人口", "生産年齢人口", "老年人口"];
+export type StatLabel = (typeof statLabel)[number];
